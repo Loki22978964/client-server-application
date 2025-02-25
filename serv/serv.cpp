@@ -80,12 +80,7 @@ string addSurname(const string& name) {
     return name + " Bobro";
 }
 
-#include <iostream>
-#include <sstream>
-#include <vector>
-#include <string>
 
-using namespace std;
 
 string numbersMinMax(const string& numbers) {
     istringstream iss(numbers);
