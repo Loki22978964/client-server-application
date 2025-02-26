@@ -223,11 +223,11 @@ int main(void){
             if(receivedData[0] == '1'){
                 response = func::numbersMinMax(receivedData);
             }
-            else if(receivedData[0] == '2'){
-                response = func::checkPunctuation(receivedData);
-            }
-            else{
+            if(receivedData[0] == '2'){
                 response = func::add_arithmetic_mean(receivedData);
+            }
+            if(receivedData[0] == '3'){
+                response = func::checkPunctuation(receivedData);
             }
             
         }

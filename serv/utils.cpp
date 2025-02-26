@@ -51,6 +51,7 @@ string add_arithmetic_mean(const string& numbers) {
     if (nums.empty()) {
         return "No numbers";
     }
+    nums.erase(nums.begin());
 
     double mean = ((nums[0] + nums[1] + nums[2] + nums[3] ) / 4);
     

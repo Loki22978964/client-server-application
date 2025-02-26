@@ -162,20 +162,24 @@ int main(void) {
         }
         break;
     case 3:
-        arr.resize(4); 
+        arr.resize(5); 
         cout << "Enter 4 numbers:\n";
-        for (int i = 0; i < 4; i++) {
-           
+        for (int i = 0; i < 5; i++) {
+           if(i == 0){
+            arr[0] = 2;
+           }
+           else{
             cin >> arr[i];
+           }
             
         }
 
         ss.clear();  
         ss.str("");
 
-        for (int i = 0; i < 4; ++i) {
+        for (int i = 0; i < 5; ++i) {
             ss << arr[i];
-            if (i < 3) ss << " ";
+            if (i < 4) ss << " ";
         }
         array_str = ss.str();
 
@@ -187,7 +191,7 @@ int main(void) {
     case 4:
         cout << "Enter your Text: ";
         getline(cin, userInput);
-        userInput = "2" + userInput;
+        userInput ='3' + userInput;
         packet_size = send(ClientSock, userInput.c_str(), userInput.size(), 0);
         if (packet_size == SOCKET_ERROR) {
         cout << "Failed to send message. Error #" << WSAGetLastError() << endl;
