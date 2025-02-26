@@ -111,7 +111,7 @@ int main(void) {
     short packet_size = 0; // The size of sending/receiving packet in bytes
 
     while (true) {
-        cout << "enter a number for\n"
+        cout << "enter a number(int) for\n"
         "1. Add last name to first name\n"
              << "2. Find the maximum and minimum number from an array\n"
              << "3. array of four numbers add average to each\n"
