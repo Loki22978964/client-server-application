@@ -10,7 +10,7 @@ string addSurname(const string& name) {
 
 string numbersMinMax(const string& numbers) {
     istringstream iss(numbers);
-    vector<int> nums;
+    vector<double> nums;
     int num;
 
     while (iss >> num){
@@ -41,8 +41,8 @@ string numbersMinMax(const string& numbers) {
 
 string add_arithmetic_mean(const string& numbers) {
     istringstream iss(numbers);
-    vector<int> nums;
-    int num;
+    vector<double> nums;
+    double num;
 
     while (iss >> num) {
         nums.push_back(num);
@@ -55,7 +55,7 @@ string add_arithmetic_mean(const string& numbers) {
 
     double mean = ((nums[0] + nums[1] + nums[2] + nums[3] ) / 4);
     
-    for (int& n : nums) {
+    for (double& n : nums) {
         n += mean;
     }
 

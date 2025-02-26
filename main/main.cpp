@@ -122,7 +122,7 @@ int main(void) {
         cin >> choice;
         cin.ignore();  // Очищаємо буфер вводу
     
-        vector<int> arr; 
+        vector<double> arr; 
         stringstream ss; 
         string array_str;
 
