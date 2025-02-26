@@ -9,6 +9,9 @@
 
 #pragma comment(lib, "ws2_32.lib")
 
+// To start the server in the terminal, you need to write the following commands 
+// (g++ -o main.exe main.cpp -lws2_32) and (./main)
+
 using namespace std;
 
 int Inet_pton(int af, const char *src, void *dst) {
@@ -108,7 +111,8 @@ int main(void) {
     short packet_size = 0; // The size of sending/receiving packet in bytes
 
     while (true) {
-        cout << "1. Add last name to first name\n"
+        cout << "enter a number for\n"
+        "1. Add last name to first name\n"
              << "2. Find the maximum and minimum number from an array\n"
              << "3. array of four numbers add average to each\n"
              << "4. whether there are symbols in the text\n"
@@ -195,21 +199,23 @@ int main(void) {
         WSACleanup();
         return 0;
     default:
-        cout << "Wrong choice." << endl;
+        cout << "Wrong choice. Continuing the loop..." << endl;
         break;
 }
-    
-        packet_size = recv(ClientSock, servBuff.data(), servBuff.size(), 0);
-        if (packet_size == SOCKET_ERROR) {
-            cout << "Failed to receive message. Error # " << WSAGetLastError() << endl;
-        } else if (packet_size == 0) {
-            cout << "The server has gone offline." << endl;
-            break;
-        }
-    
-        string response(servBuff.data(), packet_size);
-        cout << "Server response: " << response << endl;
+if (choice >= 1 && choice <= 4) {
+    packet_size = recv(ClientSock, servBuff.data(), servBuff.size(), 0);
+    if (packet_size == SOCKET_ERROR) {
+        cout << "Failed to receive message. Error # " << WSAGetLastError() << endl;
+    } else if (packet_size == 0) {
+        cout << "The server has gone offline." << endl;
+        break;
     }
+
+    string response(servBuff.data(), packet_size);
+    cout << "Server response: " << response << endl;
+    }
+    }
+    
 
     closesocket(ClientSock);
     WSACleanup();

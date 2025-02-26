@@ -11,10 +11,10 @@
 #include <string>
 #include <cctype>
 
+#include "utils.h"
 
-
-
-
+// To start the server in the terminal, you need to write the following commands 
+// (g++ -o serv.exe serv.cpp utils.cpp -lws2_32) and (./serv)
 
 #pragma comment(lib , "Ws2_32.lib")
 using namespace std;
@@ -80,81 +80,6 @@ int Inet_pton(int af, const char *src, void *dst) {
     return 0;
 }
 
-
-string addSurname(const string& name) {
-    return name + " Bobro";
-}
-
-
-
-string numbersMinMax(const string& numbers) {
-    istringstream iss(numbers);
-    vector<int> nums;
-    int num;
-
-    while (iss >> num){
-        nums.push_back(num);
-    }
-
-    if (nums.empty()){
-        return "No numbers";
-    }
-
-    nums.erase(nums.begin());
-
-    if (nums.empty()){
-        return "No valid numbers after 1";
-    }
-
-    int minNum = nums[0], maxNum = nums[0];
-
-    for (int n : nums){
-        if (n < minNum) minNum = n;
-        if (n > maxNum) maxNum = n;
-    }
-
-    return to_string(maxNum) + " " + to_string(minNum);
-}
-
-
-
-string add_arithmetic_mean(const string& numbers) {
-    istringstream iss(numbers);
-    vector<int> nums;
-    int num;
-
-    while (iss >> num) {
-        nums.push_back(num);
-    }
-
-    if (nums.empty()) {
-        return "No numbers";
-    }
-
-    double mean = ((nums[0] + nums[1] + nums[2] + nums[3] ) / 4);
-    
-    for (int& n : nums) {
-        n += mean;
-    }
-
-    ostringstream oss;
-    for (int n : nums) {
-        oss << n << " ";
-    }
-
-    return oss.str();
-}
-
-
-
-string checkPunctuation(const string& message) {
-    for (size_t i = 1; i < message.size(); ++i) { // Починаємо з індексу 1
-        if (ispunct(static_cast<unsigned char>(message[i]))) {
-            return "Yes";
-        }
-    }
-    return "No";
-}
 
 
 int main(void){
@@ -292,17 +217,17 @@ int main(void){
         // Перевіряємо, чи це ім'я чи масив чисел
         if (receivedData.find_first_of("0123456789") == string::npos) {
             // Це ім'я
-            response = addSurname(receivedData);
+            response = func::addSurname(receivedData);
         } 
         else{
             if(receivedData[0] == '1'){
-                response = numbersMinMax(receivedData);
+                response = func::numbersMinMax(receivedData);
             }
             else if(receivedData[0] == '2'){
-                response = checkPunctuation(receivedData);
+                response = func::checkPunctuation(receivedData);
             }
             else{
-                response = add_arithmetic_mean(receivedData);
+                response = func::add_arithmetic_mean(receivedData);
             }
             
         }
