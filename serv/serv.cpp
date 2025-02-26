@@ -8,6 +8,11 @@
 #include <sstream>
 #include <algorithm>
 #include <limits>
+#include <string>
+#include <cctype>
+
+
+
 
 
 
@@ -56,9 +61,9 @@ int Inet_pton(int af, const char *src, void *dst) {
         return 0;
     }
 
-    // Копіювання рядка з перевіркою довжини
+    
     if (strlen(src) > INET6_ADDRSTRLEN) {
-        return 0; // Рядок занадто довгий
+        return 0; 
     }
     strcpy_s(src_copy, sizeof(src_copy), src);
 
@@ -140,6 +145,16 @@ string add_arithmetic_mean(const string& numbers) {
     return oss.str();
 }
 
+
+
+string checkPunctuation(const string& message) {
+    for (size_t i = 1; i < message.size(); ++i) { // Починаємо з індексу 1
+        if (ispunct(static_cast<unsigned char>(message[i]))) {
+            return "Yes";
+        }
+    }
+    return "No";
+}
 
 
 int main(void){
@@ -282,6 +297,9 @@ int main(void){
         else{
             if(receivedData[0] == '1'){
                 response = numbersMinMax(receivedData);
+            }
+            else if(receivedData[0] == '2'){
+                response = checkPunctuation(receivedData);
             }
             else{
                 response = add_arithmetic_mean(receivedData);
